@@ -58,7 +58,7 @@ export default function TextForm(props) {
                                                                 height: 180,
                                                             }} onChange={handleOnChange} rows="5"></textarea>
             </div>
-            <button className="btn btn-primary my-1" onClick={handleUpClick}>Convert to Uppercase</button>
+            <button className="btn btn-primary mx-2 my-1" onClick={handleUpClick}>Convert to Uppercase</button>
             <button className="btn btn-danger mx-2 my-1" onClick={handlelowerClick}>Convert to Lowercase</button> 
             <button className="btn btn-success mx-2 my-1" onClick={handleEmptyClick}>Clear TextArea</button>
             <button className="btn btn-warning mx-2 my-1" onClick={handleRevsrseClick}>Inverse Text</button>
