@@ -4,7 +4,7 @@ import TextForm from './components/TextForm';
 import React, { useState } from 'react';
 import About from './components/About';
 import Contact from './components/Contact';
-// import { render } from "react-dom";
+import Alert from './components/Alert';
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,28 +14,40 @@ import {
 
 
 function App() {
-  const [mode,setMode] = useState('light')
+  const [mode,setMode] = useState('light');
+  const [alert,setAlert] = useState(null);
 
   const toggleMode = ()=>{
     if(mode === 'light'){
-      setMode('dark')
-      document.body.style.backgroundColor = '#042743'
-      document.title = "TextUtils-DarkMode"
+      setMode('dark');
+      document.body.style.backgroundColor = '#042743';
+      // document.title = "TextUtils-DarkMode";
     }
     else{
-      setMode('light')
-      document.body.style.backgroundColor = 'white'
-      document.title = "TextUtils-LightMode"
+      setMode('light');
+      document.body.style.backgroundColor = 'white';
+      // document.title = "TextUtils-LightMode";
     }
   } 
+
+  const showAlert = (message, type)=>{
+    setAlert({
+      msg: message,
+      type: type
+    });
+    setTimeout(() => {
+      setAlert(null);
+    }, 2000);
+  }
 
   return (
     <Router>
         <div>
           <Navbar title="TextUtils" link1="https://reactjs.org/docs/introducing-jsx.html" mode={mode} toggleMode={toggleMode}/>
+          <Alert alert={alert}/>
           <Switch>
             <Route exact path="/">
-                <TextForm heading="Enter the text to analyze:" mode={mode}/>
+                <TextForm mode={mode} showAlert={showAlert} heading="Try TextUtils - Word Counter, Character Counter, Lowecase to Uppercase, Uppercase to Lowercase, Inverse the Text, Remove Extra Spaces, Copy the Text :"/>
             </Route>
             <Route exact path="/about">
                 <About mode={mode}/>
